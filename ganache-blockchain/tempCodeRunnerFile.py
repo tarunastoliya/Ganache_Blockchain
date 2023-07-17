@@ -1,0 +1,1 @@
+eturn render_template('check.html')

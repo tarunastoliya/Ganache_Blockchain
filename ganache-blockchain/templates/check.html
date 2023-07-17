@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Image</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script>
+        function previewImage() {
+            var preview = document.querySelector('#image-preview');
+            var file = document.querySelector('input[type=file]').files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function() {
+                preview.src = reader.result;
+            }
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Upload Image For Checking</h1>
+    <form action="{{ url_for('check_page') }}" method="post" enctype="multipart/form-data">
+        <label for="image-input">Image Input:</label>
+        <input required type="file" name="image" id="image-input" onchange="previewImage();">
+        <div class="image-preview-container">
+            <img id="image-preview">
+        </div>
+        <div class="submit-container">
+            <input type="submit" value="Check DRM">
+        </div>
+    </form>
+</body>
+</html>

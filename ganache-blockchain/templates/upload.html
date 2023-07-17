@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Image and Text</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script>
+        function previewImage() {
+            var preview = document.querySelector('#image-preview');
+            var file = document.querySelector('input[type=file]').files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function() {
+                preview.src = reader.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Upload Image and Text</h1>
+    <form action="{{ url_for('apply_page') }}" method="post" enctype="multipart/form-data">
+        <label for="image-input">Image Input:</label>
+        <input required type="file" name="image" id="image-input" onchange="previewImage();">
+        <img id="image-preview" style="max-width:200px;margin-top:10px;">
+        <label for="text-input">Text Input:</label>
+        <input type="text" name="text" id="text-input">
+        <input required type="submit" value="Apply DRM">
+    </form>
+</body>
+</html>
