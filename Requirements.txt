@@ -1,0 +1,20 @@
+1. Install Node js 
+2. Install Ganache-Blockchain 
+3. run command npm install -g truffle
+4. Install all the required libraries.
+
+Procedure 
+
+step 1. Open powershell/cmd and locate to code Directory.
+step 2. Open Ganache blockchain and setup quick Blockchain and save it 
+step 3. On powershell/cmd run truffle deploy
+step 4. Paste deployed contract address on "contractBlock.py" contract_address field.
+step 5. In endc.py replace the following line    
+	  md.contract.functions.setPayload(res).transact() 
+		with 
+	  md.contract.functions.setPayload(res).transact({'from' : '0xE47b018B551b0C743EbdaA35eF9710797204Ca78'})
+	  here, dynamic wallet_address = 0xE47b018B551b0C743EbdaA35eF9710797204Ca78
+
+step 1 to step 5 required to be executed once only.
+
+step 6. Run main.py
